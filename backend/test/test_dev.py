@@ -16,6 +16,4 @@ if __name__ == "__main__":
     # print(netflix.netflix_data())
 
     nn = NeuralNetworks()
-    # print(nn.data)
-    # print(nn.softmax())
-    print(nn.scatterplot())
+    nn.fit()
