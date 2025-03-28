@@ -16,4 +16,5 @@ if __name__ == "__main__":
     # print(netflix.netflix_data())
 
     nn = NeuralNetworks()
-    nn.fit()
+    nn.fit(learning_rate=1)
+    print(nn.loss)

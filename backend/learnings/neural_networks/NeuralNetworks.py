@@ -45,7 +45,7 @@ class NeuralNetworks:
  
     def backprops(self, probs):
         m = self.Y.shape[0]
-        dz = probs
+        dz = probs.copy()
         dz[range(m), self.Y] -= 1
         dz = dz / m
 
@@ -54,7 +54,6 @@ class NeuralNetworks:
         return dW, db
     
     def fit(self, epochs=1000, learning_rate=0.01):
-        # print(learning_rate)
         for i in range(epochs):
             probs = self.forward_propagation()
             dW, db = self.backprops(probs)
