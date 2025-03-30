@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from waitress import serve
 
-from backend.learnings.neural_networks.NeuralNetworks import NeuralNetworks
+from learnings.neural_networks.NeuralNetworks import NeuralNetworks
+from flask_server.tensorflow_server import correlation_heatmap
 
 app = Flask(__name__)
 
@@ -20,6 +21,9 @@ def predict():
 def show():
     return jsonify(nn.data.to_dict(orient='records'))
 
+@app.route('/tensorflow/correlation_heatmap')
+def healthify_heatmap():
+    return correlation_heatmap()
 
 if __name__ == '__main__':
     serve(app, host="0.0.0.0", port=8000)
