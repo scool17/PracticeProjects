@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+
+
 class NeuralNetworks:
     def __init__(self):
         self.data = self.read_data()
@@ -11,7 +14,7 @@ class NeuralNetworks:
         self.loss = []        
 
     def read_data(self):
-        return pd.read_csv('data/spiral.csv')
+        return pd.read_csv('spiral.csv')
     
     def formulate_data(self):
         """

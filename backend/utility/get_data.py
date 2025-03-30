@@ -8,6 +8,5 @@ class Parser(configparser.ConfigParser):
         self.netflix_data = self.get_data(self.get('Global', 'Netflix'))
 
     def get_data(self, file_path):
-        print(file_path)
         return pd.read_csv(file_path)
 
