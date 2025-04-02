@@ -2,8 +2,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.layers import Dense, Input
 import tensorflow as tf
 from tensorflow.keras.utils import plot_model
 
@@ -35,7 +35,7 @@ class TensorFlow:
         X_test = scaler.transform(X_test)
         return X_train, X_test, y_train, y_test
     
-    def create_model(self):
+    def create_sequential_model(self):
         model = Sequential([Dense(64, activation='relu', input_shape=(11,), name="Hidden_Layer_1"),
                             Dense(4, activation='softmax', name="Output_Layer"),
         ])
@@ -43,6 +43,17 @@ class TensorFlow:
         return model
     
     def train_model(self):
-        model = self.create_model()
+        model = self.create_sequential_model()
         history = model.fit(self.X_train, self.y_train, epochs= 100, validation_split=0.1, verbose=1, batch_size=256)
         return history
+    
+    def create_functional_model(self):
+        inputs = Input(shape=(11, 1))
+        h1 = Dense(16, activation='relu', name='hidden_1')(inputs)
+        h2 = Dense(8, activation='relu', name='hidden_2')(h1)
+        h3 = Dense(4, activation='relu', name='hidden_3')(h2)
+        out1 = Dense(2, activation='sigmoid', name='output_1')(h3)
+        out2 = Dense(1, activation='relu', name='output_2')(h3)
+
+        model = Model(inputs=inputs, outputs=[out1, out2], name="Functional_Model") 
+        return model
