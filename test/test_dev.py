@@ -19,7 +19,8 @@ if __name__ == "__main__":
     # print(nn.loss)
 
     tf = TensorFlow()
-    # model = tf.create_model()
-    history = tf.train_model()
+    # history = tf.train_model()
+    model = tf.create_functional_model()
+    model.summary()
     # print(model.weights)
     # print(model.summary())
