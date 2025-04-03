@@ -42,9 +42,9 @@ class TensorFlow:
         model.compile(loss="sparse_categorical_crossentropy", optimizer=tf.keras.optimizers.Adam(0.01), metrics=["accuracy"])
         return model
     
-    def train_model(self):
+    def train_model(self, epochs=100):
         model = self.create_sequential_model()
-        history = model.fit(self.X_train, self.y_train, epochs= 100, validation_split=0.1, verbose=1, batch_size=256)
+        history = model.fit(self.X_train, self.y_train, epochs=epochs, validation_split=0.1, verbose=1, batch_size=256)
         return history
     
     def create_functional_model(self):
