@@ -2,33 +2,39 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import io
 import os
-from learnings.neural_networks.TensorFlow import TensorFlow
+from learnings.neural_networks.TensorFlowHealthify import TensorFlowHelathify
 from flask import send_file
 from tensorflow.keras.utils import plot_model
+import uuid
+import os
+import glob
+
+static_dir = os.path.join(os.path.dirname(__file__), "static")
+os.makedirs(static_dir, exist_ok=True)  
 
 class TensorFlowServer:
 
     def __init__(self):
-        self.tf = TensorFlow()
+        self.tf = TensorFlowHelathify()
         self.df = self.tf.df
         self.sequential_model = self.tf.create_sequential_model()
         self.functional_model = self.tf.create_functional_model()
         self.history = self.tf.train_model(epochs=10)
 
     def correlation_heatmap(self):
+        delete_old_images("correlation_heatmap")
+        filename = f"correlation_heatmap_{uuid.uuid4().hex}.png"
+        filepath = os.path.join(static_dir, filename)
         plt.figure(figsize=(12,8))
         plt.title("Correlation Heatmap of Healthify")
         sns.heatmap(self.df.corr(), annot=True, cmap="coolwarm", fmt=".2f")
-        img = io.BytesIO()
-        plt.savefig(img, format='png')
-        img.seek(0)
+        plt.savefig(filepath)
         plt.close() 
-        return {"image_path": img}
+        return {"image_path": filepath}
 
     def plot_sequential_model(self):
         try:
             img = io.BytesIO()
-            # image_path = os.path.join("static", "sequential_model.png")
             plot_model(self.sequential_model, to_file=img, show_shapes=True, show_layer_names=True)
             img.seek(0)
             return {"image_path": img}
@@ -40,6 +46,9 @@ class TensorFlowServer:
 
     def plot_healthify_loss(self):
         try:
+            delete_old_images("healthify_loss")
+            filename = f"healthify_loss_{uuid.uuid4().hex}.png"
+            filepath = os.path.join(static_dir, filename)
             # Plot loss curves
             plt.figure(figsize=(10, 6))
             plt.plot(self.history.epoch, self.history.history['loss'], label='Training Loss')
@@ -48,19 +57,19 @@ class TensorFlowServer:
             plt.xlabel("Epochs")
             plt.ylabel("Loss")
             plt.legend()
-            
             # Save the figure
-            img = io.BytesIO()
-            plt.savefig(img, format='png')
-            img.seek(0)
+            plt.savefig(filepath)
             plt.close()
-            return {"image_path": img}
+            return {"image_path": filepath}
         except Exception as e:
             return f"Error: {str(e)}"
 
     def plot_healthify_accuracy(self):
         try:
             # Plot loss curves
+            delete_old_images("healthify_accuracy")
+            filename = f"healthify_accuracy_{uuid.uuid4().hex}.png"
+            filepath = os.path.join(static_dir, filename)
             plt.figure(figsize=(10, 6))
             plt.plot(self.history.epoch, self.history.history['accuracy'], label='Training accuracy')
             plt.plot(self.history.epoch, self.history.history['val_accuracy'], label='Validation accuracy')
@@ -68,11 +77,9 @@ class TensorFlowServer:
             plt.title("Accuracy vs Epochs")
             plt.xlabel("Epochs")
             plt.ylabel("Accuracy")
-            img = io.BytesIO()
-            plt.savefig(img, format='png')
-            img.seek(0)
+            plt.savefig(filepath)
             plt.close()
-            return {"image_path": img}
+            return {"image_path": filepath}
         except Exception as e:
             return f"Error: {str(e)}"
 
@@ -97,3 +104,12 @@ class TensorFlowServer:
         summary_string = stream.getvalue()
         stream.close()
         return summary_string
+    
+
+def delete_old_images(prefix):
+    pattern = os.path.join(static_dir, f"{prefix}_*.png")
+    for file_path in glob.glob(pattern):
+        try:
+            os.remove(file_path)
+        except Exception as e:
+            print(f"Error deleting file {file_path}: {e}")
