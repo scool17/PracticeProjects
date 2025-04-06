@@ -3,7 +3,7 @@
 
 from learnings.neural_networks.NeuralNetworks import NeuralNetworks
 # import configparser
-from learnings.neural_networks.TensorFlow import TensorFlow
+from learnings.neural_networks.TensorFlowHealthify import TensorFlowHelathify
 
 if __name__ == "__main__":
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     # nn.fit(learning_rate=1)
     # print(nn.loss)
 
-    tf = TensorFlow()
+    tf = TensorFlowHelathify()
     # history = tf.train_model()
     model = tf.create_functional_model()
     model.summary()

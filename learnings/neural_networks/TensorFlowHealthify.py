@@ -7,7 +7,7 @@ from tensorflow.keras.layers import Dense, Input
 import tensorflow as tf
 from tensorflow.keras.utils import plot_model
 
-class TensorFlow:
+class TensorFlowHelathify:
 
     def __init__(self):
         self.data = self.read_data()

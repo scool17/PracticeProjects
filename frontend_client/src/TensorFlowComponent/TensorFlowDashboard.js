@@ -33,10 +33,12 @@ export default function TensorFlowDashboard() {
     return (
         <div>
             <h2 > Welcome to the TensorFlow Dashboard</h2>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
                 <h4 style={{margin: 0}}> Correlation Heatmap </h4>
                 {dashboardProps.healthifyHeatmap ? (
-        <img src={dashboardProps.healthifyHeatmap} alt="Correlation Heatmap" style={{ width: "100%", maxWidth: "600px" }} />
+        <img key={dashboardProps.healthifyHeatmap}
+        src={`${dashboardProps.healthifyHeatmap}?${Date.now()}`} alt="Correlation Heatmap" style={{ width: "100%", maxWidth: "600px" }} />
       ) : (
         <p>Loading...</p>
       )}
@@ -44,7 +46,7 @@ export default function TensorFlowDashboard() {
             <div>
                 {/* <h4 style={{margin: 0}}> Correlation Heatmap </h4> */}
                 {dashboardProps.healthifyLoss ? (
-        <img src={dashboardProps.healthifyLoss} alt="Loss" style={{ width: "100%", maxWidth: "600px" }} />
+        <img key={dashboardProps.healthifyLoss} src={`${dashboardProps.healthifyLoss}?${Date.now()}`} alt="Loss" style={{ width: "100%", maxWidth: "600px" }} />
       ) : (
         <p>Loading...</p>
       )}
@@ -52,15 +54,16 @@ export default function TensorFlowDashboard() {
             <div>
                 {/* <h4 style={{margin: 0}}> Correlation Heatmap </h4> */}
                 {dashboardProps.healthifyAccuracy ? (
-        <img src={dashboardProps.healthifyAccuracy} alt="Accuracy" style={{ width: "100%", maxWidth: "600px" }} />
+        <img key={dashboardProps.healthifyAccuracy} src={`${dashboardProps.healthifyAccuracy}?${Date.now()}`} alt="Accuracy" style={{ width: "100%", maxWidth: "600px" }} />
       ) : (
         <p>Loading...</p>
       )}
-            </div>
+            </div>  
             <div
       className="html-content"
       dangerouslySetInnerHTML={{ __html: dashboardProps.healthifySequentialModelSummary }}
     />
+    </div>
             <div
       className="html-content"
       dangerouslySetInnerHTML={{ __html: dashboardProps.irisFunctionalModelSummary }}
