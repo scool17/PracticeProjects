@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, send_file
 from waitress import serve
 
-from learnings.neural_networks.NeuralNetworks import NeuralNetworks
+from learnings.neural_networks.neural_networks import NeuralNetworks
 from flask_server.tensorflow_server import TensorFlowServer
 
 app = Flask(__name__)
