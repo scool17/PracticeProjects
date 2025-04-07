@@ -1,10 +1,12 @@
 
 
 
-from learnings.neural_networks.NeuralNetworks import NeuralNetworks
+from learnings.neural_networks.neural_networks import NeuralNetworks
 # import configparser
-from learnings.neural_networks.TensorFlow import TensorFlow
-from learnings.neural_networks.MnistData import HandWrittenDigits
+from learnings.neural_networks.tensorflow import TensorFlow
+from learnings.neural_networks.mnist_dataset import HandWrittenDigits
+
+from learnings.neural_networks.amazon import Amazon
 
 if __name__ == "__main__":
 
@@ -26,10 +28,13 @@ if __name__ == "__main__":
     # print(model.weights)
     # print(model.summary())
 
-    hwd = HandWrittenDigits()
+    # hwd = HandWrittenDigits()
 
-    model = hwd.train_model(12)
+    # model = hwd.train_model(12)
 
-    predictions = hwd.predict_result(model)
-    print(hwd.check_accuracy(predictions))
+    # predictions = hwd.predict_result(model)
+    # print(hwd.check_accuracy(predictions))
+
+    am = Amazon()
+    print(am.run())
 

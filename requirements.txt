@@ -2,6 +2,8 @@ absl-py==2.2.1
 asttokens==3.0.0
 astunparse==1.6.3
 blinker==1.9.0
+cachelib==0.13.0
+category_encoders==2.8.1
 certifi==2025.1.31
 charset-normalizer==3.4.1
 click==8.1.8
@@ -13,6 +15,7 @@ decorator==5.2.1
 exceptiongroup==1.2.2
 executing==2.2.0
 Flask==3.1.0
+Flask-Caching==2.3.1
 flatbuffers==25.2.10
 fonttools==4.56.0
 gast==0.6.0
@@ -47,6 +50,7 @@ optree==0.14.1
 packaging==24.2
 pandas==2.2.3
 parso==0.8.4
+patsy==1.0.1
 pexpect==4.9.0
 pillow==11.1.0
 platformdirs==4.3.7
@@ -68,6 +72,7 @@ scipy==1.15.2
 seaborn==0.13.2
 six==1.17.0
 stack-data==0.6.3
+statsmodels==0.14.4
 tensorboard==2.19.0
 tensorboard-data-server==0.7.2
 tensorflow==2.19.0
