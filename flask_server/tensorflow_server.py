@@ -2,7 +2,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import io
 import os
-from learnings.neural_networks.tensorflow import TensorFlow
+from learnings.neural_networks.tensorflow_healthify import TensorFlow
 from flask import send_file
 from tensorflow.keras.utils import plot_model
 
