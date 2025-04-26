@@ -1,12 +1,12 @@
 
 
 
-from learnings.neural_networks.neural_networks import NeuralNetworks
+from learnings.neural_networks.neural_networks_archived import NeuralNetworks
 # import configparser
-from learnings.neural_networks.tensorflow import TensorFlow
-from learnings.neural_networks.mnist_dataset import HandWrittenDigits
+from learnings.neural_networks.tensorflow_healthify_archived import TensorFlow
+from learnings.neural_networks.mnist_dataset_archived import HandWrittenDigits
 
-from learnings.neural_networks.amazon import Amazon
+from learnings.neural_networks.amazon_archived import Amazon
 
 if __name__ == "__main__":
 
